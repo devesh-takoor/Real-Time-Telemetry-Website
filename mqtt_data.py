@@ -13,13 +13,12 @@ import sys
 
 broker = 'test.mosquitto.org'
 port = 1883
-topic = "arduino/simple"
+topic = "arduino/rttweb"
 # generate client ID with pub prefix randomly
 client_id = f'python-mqtt-{random.randint(0, 100)}'
 
 
 app = Flask(__name__)
-
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 print(basedir)

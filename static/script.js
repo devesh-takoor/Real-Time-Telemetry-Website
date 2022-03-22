@@ -11,7 +11,7 @@ async function post_request(){
     1: resource: the URL string, or a Request object
     2: options: the configuration object with properties like method, headers, body, credentials
      */
-    const response = await fetch("http://127.0.0.1:5000/api/test",
+    const response = await fetch("http://127.0.0.1:5000/api/grt_data",
         {
             "origins" : "*",
             method: "POST",
@@ -30,9 +30,7 @@ let data = document.getElementById('data');
 let timestamp = document.getElementById('timestamp');
 
 
-add_button.addEventListener('click', function (event){
-    add_new_user()
-})
+
 
 
 
@@ -61,23 +59,25 @@ async function retrieve_users(){
         // console.log(user)
         // users.push(JSON.stringify(user));
         let row = document.createElement('tr');
-        let cell_si = document.createElement('td');
+        //let cell_si = document.createElement('td');
         let cell_sd = document.createElement('td');
-        let cell_tc = document.createElement('td');
+        //let cell_tc = document.createElement('td');
 
 
-        cell_si.innerText = sensor.sensor_id;
+        //cell_si.innerText = sensor.sensor_id;
         cell_sd.innerText = sensor.data;
-        cell_tc.innerText = sensor.timestamp;
+        //cell_tc.innerText = sensor.timestamp;
 
 
-        row.appendChild(cell_si);
+        //row.appendChild(cell_si);
         row.appendChild(cell_sd);
-        row.appendChild(cell_tc);
+        //row.appendChild(cell_tc);
         table.appendChild(row);
     }
 }
 
-
+setInterval(function() {
+                  window.location.reload();
+                }, 600000); 
 
 

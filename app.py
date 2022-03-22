@@ -1,14 +1,22 @@
-
+from paho.mqtt import client as mqtt_client
+import json 
 from datetime import datetime
 import os
-from flask import Flask, request, json
+from flask import Flask, request, json, render_template
 from flask_cors import CORS
 import flask_sqlalchemy
 import flask_migrate
 from sqlalchemy.ext.declarative import DeclarativeMeta
 import sys
+#from mqtt_data import *
+
 
 app = Flask(__name__)
+
+
+@app.route('/', methods=['GET'])
+def home():
+   return render_template('rttweb.html')
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 print(basedir)
@@ -19,13 +27,11 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'sq
 db = flask_sqlalchemy.SQLAlchemy(app)
 migrate = flask_migrate.Migrate(app, db)
 
-
 class Sensor(db.Model):
     entry_id = db.Column(db.Integer, primary_key=True)
     sensor_id = db.Column(db.String(32))
     data = db.Column(db.String(255))
     timestamp = db.Column(db.DateTime(), default=datetime.now())
-    #email = db.Column(db.String(64), unique=True)
 
     def __repr__(Sensor):
         return f'<Sensor Data:{self.sensor_id} {self.data} {self.timestamp}>'
@@ -57,6 +63,8 @@ def get_sensor_data(sensor_id):
 
     return data_collection
 
+
+
 class AlchemyEncoder(json.JSONEncoder):
     def default(self, obj):
         if isinstance(obj.__class__, DeclarativeMeta):
@@ -74,59 +82,21 @@ class AlchemyEncoder(json.JSONEncoder):
 
         return json.JSONEncoder.default(self, obj)
 
+@app.route("/dashboard", methods=['GET'])
+def get_sensordata():
+   print("Sensor data has been received")
 
-@app.route("/")
-def home():
-    status=add_data("test", "data1", timestamp=datetime.now())
-    print(status)
-    collection = get_sensor_data("test")
-    print(collection)
-    return str(collection)
+   sensor_obj = Sensor.query.all()
 
-@app.route("/api/add_new_data", methods=['POST'])
-def add_new_data():
-    print("New Data has been received")
-
-    response = '{"Status":"Error"}'
-    try:
-        data_str = request.data.decode()
-        # Display JSON String
-        print(data_str)
-        data_dict = json.loads(data_str)
-        # Display Data Dictionary
-        for key in data_dict:
-            print(f'{key}: {data_dict[key]}')
-
-        status = add_data(data_dict['sensor_id'],
-                          data_dict['data'],
-                          data_dict['timestamp'])
-
-        if status == 'OK':
-            response = app.response_class(
-                response=json.dumps(f'{data_dict["sensor_id"]} {data_dict["data"]} has been added'),
-                status=200,
-                mimetype='application/json')
-        elif status == 'Error':
-            response = app.response_class(
-                response=json.dumps('An unexpected error occurred'),
-                status=500,
-                mimetype='application/json')
-
-    except Exception as err:
-        print(err)
-
-    return response
+   response = json.dumps(sensor_obj, cls=AlchemyEncoder)
+   print(response)
+   #return response, 200
+   return render_template('dashboard.html', response=response )
 
 
-@app.route("/api/get_data", methods=['GET'])
-def get_all_data():
-    print("Data Request has been received")
-
-    data_obj = Sensor.query.all()
-
-    response = json.dumps(data_obj, cls=AlchemyEncoder)
-    print(response)
-    return response, 200
+@app.route('/account', methods=['GET'])
+def navbar():
+   return render_template('account.html')
 
 if __name__ == '__main__':
    app.run(debug=True)

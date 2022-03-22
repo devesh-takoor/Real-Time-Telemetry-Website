@@ -1,2 +1,2 @@
-#define SECRET_SSID "ZTE3185"
-#define SECRET_PASS "12345678"
+#define SECRET_SSID "TAKOOR"
+#define SECRET_PASS "papudirrtw"
