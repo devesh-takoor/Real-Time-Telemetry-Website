@@ -41,6 +41,7 @@
   min-width: 160px;
   z-index: 1;
     margin-left: -175%;
+    border-bottom: 1px solid cyan;
 
   
 }
@@ -50,21 +51,23 @@
   padding: 10px 16px;
   text-decoration: none;
   display: block;
+  border-bottom: 1px solid cyan;
+
 
 }
 
 .dropdown-content a:hover {background-color: navy; color: black;  border:yellow; }
 
-.dropdown:hover .dropdown-content {display: block; }
+.dropdown:hover .dropdown-content {display: block; border-bottom: 1px solic cyan;}
 
-.dropdown:hover .dropbtn {background-color: navy; color: darkgray; }
+.dropdown:hover .dropbtn {background-color: navy; color: darkgray; border-bottom: 1px solic cyan;}
 
 
   </style>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-dark  fixed-top px-5" style="background-color: navy; ">
+    <nav class="navbar navbar-expand-lg navbar-dark  fixed-top px-5" style="background-color: navy; border-bottom: 2px solid cyan; ">
   <div class="container-fluid">
-    <a class="navbar-brand" href="/"><img src="RTT.png" style="height: 50px;"></a>
+    <a class="navbar-brand" href="/"><img src="/static/RTT.png" style="height: 50px;"></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -81,7 +84,7 @@
         <li class="nav-item">
       
                                 <div class="dropdown">
-                                    <a class="nav-link"  href="/account" >
+                                    <a class="nav-link"  href="/account" target="_blank" >
                                   <button class="dropbtn">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
                                     <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>

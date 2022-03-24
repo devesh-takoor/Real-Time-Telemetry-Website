@@ -4,6 +4,7 @@
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
     <title>Accounts</title>
+	<link rel="icon" href="/static/RTT.ico">
 </head>
 
 <style type="text/css">
@@ -14,7 +15,7 @@
 }
 
 body {
-	background: #f6f5f7;
+	background: #93FFD8;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -54,8 +55,8 @@ a {
 
 button {
 	border-radius: 20px;
-	border: 1px solid #FF4B2B;
-	background-color: #FF4B2B;
+	border: 3px solid darkviolet;
+	background-color: navy;
 	color: #FFFFFF;
 	font-size: 12px;
 	font-weight: bold;
@@ -75,11 +76,11 @@ button:focus {
 
 button.ghost {
 	background-color: transparent;
-	border-color: #FFFFFF;
+	border-color: cyan;
 }
 
 form {
-	background-color: #FFFFFF;
+	background-color: #9D9D9D;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -169,8 +170,8 @@ input {
 
 .overlay {
 	background: #FF416C;
-	background: -webkit-linear-gradient(to right, #FF4B2B, #FF416C);
-	background: linear-gradient(to right, #FF4B2B, #FF416C);
+	
+	background: linear-gradient(to right, #548CFF, #7900FF );
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: 0 0;
@@ -264,31 +265,23 @@ footer a {
 	<div class="form-container sign-up-container">
 		<form action="#">
 			<h1>Create Account</h1>
-			<div class="social-container">
-				<a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-				<a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-				<a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
-			</div>
-			<span>or use your email for registration</span>
-			<input type="text" placeholder="Name" />
-			<input type="email" placeholder="Email" />
-			<input type="password" placeholder="Password" />
-			<button>Sign Up</button>
+			
+			
+			<input type="text" placeholder="Name" id="name" />
+			<input type="email" placeholder="Email" id="sup_email" />
+			<input type="password" placeholder="Password" id="sup_password"/>
+			<br><br>
+			<button id="sup_user">Sign Up</button>
 		</form>
 	</div>
 	<div class="form-container sign-in-container">
 		<form action="#">
 			<h1>Sign in</h1>
-			<div class="social-container">
-				<a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-				<a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-				<a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
-			</div>
-			<span>or use your account</span>
-			<input type="email" placeholder="Email" />
-			<input type="password" placeholder="Password" />
-			<a href="#">Forgot your password?</a>
-			<button>Sign In</button>
+			
+			<input type="email" placeholder="Email" id="sin_email" />
+			<input type="password" placeholder="Password" id="sin_password" />
+			<br><br>
+			<button id="sin_user" >Sign In</button>
 		</form>
 	</div>
 	<div class="overlay-container">
@@ -309,6 +302,7 @@ footer a {
 
 
 </body>
+<script src="../static/account.js" charset="utf-8"></script>
 <script>
     const signUpButton = document.getElementById('signUp');
 const signInButton = document.getElementById('signIn');
@@ -322,4 +316,5 @@ signInButton.addEventListener('click', () => {
 	container.classList.remove("right-panel-active");
 });
 </script>
+
 </html>

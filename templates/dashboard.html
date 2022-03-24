@@ -1,22 +1,24 @@
 <!DOCTYPE HTML>
 <html lang="en">
-<head>
-    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-    <title>Dashboard</title>
-</head>
-<body>
-    <div>
-        
-        <!-- <table id="table">
-            <tr>
-                <td>sensor_id</td>
-                <td>data</td>
-                <td>timestamp</td>
-            </tr>
-        </table> -->
-        {{response}}
-        
-    </div>
-<script src="script.js" charset="utf-8"></script>
-</body>
+   <head>
+      <link rel="icon" href="/static/RTT.ico">
+      <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+      <title>Dashboard</title>
+      <script src="../static/dashboard.js" charset="utf-8"></script>
+
+   </head>
+
+   <body>
+      {% include 'navbar.html' %}
+      {% block content %}
+      {% endblock %}
+
+
+
+   <br><br><br><br><br>
+    <button onclick="get_sensordata()">Get sensor data</button>
+      <br>
+
+
+   </body>
 </html>

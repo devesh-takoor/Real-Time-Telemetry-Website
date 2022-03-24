@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Real-Time Telemetry</title>
     <link rel="stylesheet" type="text/css" href="text.css">
+    <link rel="icon" href="/static/RTT.ico">
+    
 </head>
 
 <style type="text/css">
@@ -23,148 +25,13 @@
     }
 
     
-
-/* Circle */
-.circle {
-  height: 100px;
-  width: 100px;
-  border-radius: 50%;
-  background-color: transparent;
-  
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.circle:before,
-.circle:after {
-  content: '';
-  display: block;
-  position: absolute;
-  top: 0; 
-  right: 0; 
-  bottom: 0; 
-  left: 0;
-  border: 1px solid cyan;
-  border-radius: 50%;
-}
-
-
-.circle:before {
-  animation: ripple 2s linear infinite;
-}
-
-.circle:after {
-  animation: ripple 2s linear 1s infinite;
-}
-
-@keyframes ripple{
-  0% { transform: scale(4); }
-  50% { transform: scale(6); opacity:1; }
-  100% { transform: scale(8); opacity:0; }
-}
-
-/* Text */
-.text {
-  text-align: center;
-  vertical-align: middle;
-  line-height: 100px;  
-  margin: 0;
-}
 </style>
-<center><canvas id="canvas" width="450" height="450" style="margin-top: 9%; z-index: 10;">
-
-</canvas>
-<div class="circle" style="z-index: -1;"></div>
 
 
 
-</center>
-
-
-<script>
-var canvas = document.getElementById("canvas");
-var ctx = canvas.getContext("2d");
-var radius = canvas.height / 2;
-ctx.translate(radius, radius);
-radius = radius * 0.90
-setInterval(drawClock, 1000);
-
-function drawClock() {
-  drawFace(ctx, radius);
-  drawNumbers(ctx, radius);
-  drawTime(ctx, radius);
-}
-
-function drawFace(ctx, radius) {
-  var grad;
-  ctx.beginPath();
-  ctx.arc(0, 0, radius, 0, 2*Math.PI);
-  ctx.fillStyle = 'white';
-  ctx.fill();
-  grad = ctx.createRadialGradient(0,0,radius*0.95, 0,0,radius*1.05);
-  grad.addColorStop(0, 'cyan');
-  grad.addColorStop(0.5, 'black');
-  grad.addColorStop(1, 'cyan');
-  ctx.strokeStyle = grad;
-  ctx.lineWidth = radius*0.1;
-  ctx.stroke();
-  ctx.beginPath();
-  ctx.arc(0, 0, radius*0.1, 0, 2*Math.PI);
-  ctx.fillStyle = '#333';
-  ctx.fill();
-}
-
-function drawNumbers(ctx, radius) {
-  var ang;
-  var num;
-  ctx.font = radius*0.15 + "px arial";
-  ctx.textBaseline="middle";
-  ctx.textAlign="center";
-  for(num = 1; num < 13; num++){
-    ang = num * Math.PI / 6;
-    ctx.rotate(ang);
-    ctx.translate(0, -radius*0.85);
-    ctx.rotate(-ang);
-    ctx.fillText(num.toString(), 0, 0);
-    ctx.rotate(ang);
-    ctx.translate(0, radius*0.85);
-    ctx.rotate(-ang);
-  }
-}
-
-function drawTime(ctx, radius){
-    var now = new Date();
-    var hour = now.getHours();
-    var minute = now.getMinutes();
-    var second = now.getSeconds();
-    //hour
-    hour=hour%12;
-    hour=(hour*Math.PI/6)+
-    (minute*Math.PI/(6*60))+
-    (second*Math.PI/(360*60));
-    drawHand(ctx, hour, radius*0.5, radius*0.07);
-    //minute
-    minute=(minute*Math.PI/30)+(second*Math.PI/(30*60));
-    drawHand(ctx, minute, radius*0.8, radius*0.07);
-    // second
-    second=(second*Math.PI/30);
-    drawHand(ctx, second, radius*0.9, radius*0.02);
-}
-
-function drawHand(ctx, pos, length, width) {
-    ctx.beginPath();
-    ctx.lineWidth = width;
-    ctx.lineCap = "round";
-    ctx.moveTo(0,0);
-    ctx.rotate(pos);
-    ctx.lineTo(0, -length);
-    ctx.stroke();
-    ctx.rotate(-pos);
-}
-</script>
 <body>
-    
+    {% include 'navbar.html' %}
+    {% block content %}
+    {% endblock %}
 </body>
 </html>
