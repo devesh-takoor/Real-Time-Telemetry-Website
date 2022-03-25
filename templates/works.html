@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How it Works?</title>
+    <link rel="icon" href="/static/RTT.ico">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+</head>
+<script type="text/javascript">
+
+function printnumber1() {
+  let html = document.getElementById("myList0").innerHTML;
+document.getElementById("demo").innerHTML = html;
+}
+
+
+function printnumber2() {
+  let html = document.getElementById("myList1").innerHTML;
+document.getElementById("demo").innerHTML = html;
+}
+
+
+function printnumber3() {
+  let html = document.getElementById("myList2").innerHTML;
+document.getElementById("demo").innerHTML = html;
+}
+
+
+function printnumber4() {
+  let html = document.getElementById("myList3").innerHTML;
+document.getElementById("demo").innerHTML = html;
+}
+
+
+function printnumber5() {
+  let html = document.getElementById("myList4").innerHTML;
+document.getElementById("demo").innerHTML = html;
+}
+
+</script>
+<style>
+    .row .col {
+
+
+  text-align: center;
+        }
+   .container{
+  display: grid;
+    grid-template-columns: repeat(auto-fit);
+
+
+
+    width: 100%;
+}
+
+.btns{
+width: 200px;
+height: 200px;
+border-radius: 50%;
+background-color:blue;
+color: yellow;
+
+}
+
+.container{
+background-color: rgba(0,0,0,1);
+color:white;
+}
+
+.responsive {
+  width: 50%;
+  height: auto;
+}
+</style>
+<body>
+    {% include 'navbar.html' %}
+    {% block content %}
+    {% endblock %}
+<br><br><br><br><br>
+
+    <div><center>
+        <h2>How it works?</h2><br>
+            <button onclick="printnumber1()" class="btns">COLLECT</button>
+            <button onclick="printnumber2()" class="btns">STORE</button>
+            <button onclick="printnumber3()" class="btns">DISPLAY</button>
+            <button onclick="printnumber4()" class="btns" style="background-color:purple;">ANALYSE</button>
+            <button onclick="printnumber5()" class="btns" style="background-color:purple;">CONTROL</button>
+
+        <br><br>
+    <div class="container">
+    <!--<div id="result"></div>-->
+        <p id="demo"></p>
+</center>
+  </div>
+        </div>
+
+    <div id="myList0" style= "color:white; visibility:hidden; display:none;">
+        <h3 style="padding-top:20px;">How we actually collect data?</h3><hr><br>
+        <p>First of all we connect our Arduino Board(Uno Wifi Rev2) and then we upload our <a target="_blank" href="https://github.com/devesh-takoor/Real-Time-Telemetry-Website/tree/main/sensor_wifi_mqtt">code</a>.</p>
+        <p>You must change your topics from the arduino code to avoid overriding your data and also my data.</p>
+        <p>The data will then be sent to a MQTT-Broker</p>
+        <img src="/static/topic.png" alt="topic" class="responsive"><br><br>
+        <p>Do not forget to put the Wifi_SSID and Wifi_Password in the "arduino_secrets.h" file of the place where your Arduino Board is.</p>
+        <p>Now let us see how to store the data! </p>
+
+</div>
+
+    <div id="myList1" style= "color:white;visibility:hidden;">
+        <h3 style="padding-top:20px;">How to store the data?</h3><hr><br>
+        <p>First of all we must retrieve the data from the MQTT-Broker using all the information needed(broker name, broker port, broker topic)</p>
+        <p>Then we copy this <a target="_blank" href="https://github.com/devesh-takoor/Real-Time-Telemetry-Website/blob/main/mqtt_data.py">code</a>, of course you must put your topic according to what you have written previously on the Arduino IDE.</p>
+        <p>Run the code, so that it will receive the data from the MQTT-Broker</p>
+        <img src="/static/mqtt-data.png" alt="mqtt-data" class="responsive"><br><br>
+        <p>It will be automatically be updated in the <a target="_blank" href="https://github.com/devesh-takoor/Real-Time-Telemetry-Website/blob/main/sql.db">Database</a> as per the code of the python file</p>
+</div>
+
+    <div id="myList2" style= "color:white;visibility:hidden;">
+        <h3 style="padding-top:20px;">Display the Data</h3><hr><br>
+        <p>To display the data you must log in to the page which you will see on the navbar at the top.</p>
+        <p>Once logged in you go to the Dashboard page where you will be able to see all your data from your sensors on the graph</p>
+        <img src="/static/graph.png" alt="graph" class="responsive"><br><br>
+        <p>The graph will be updated every 10 minutes as per the code, also 10 minutes for not overloading the database quickly (it all depends on the user).</p>
+
+</div>
+
+    <div id="myList3" style= "color:white;visibility:hidden;">
+        <h3 style="padding-top:20px;">Analyse the Data (BETA)</h3><hr><br>
+        <p>Well unfortunately due to lack of time this part was not been able to complete</p>
+        <p>Basically in this part you would have been able to predict the future data according to the trend/pattern it is following and also analyse it, like:</p>
+
+            <li>Line of best-fit</li>
+            <li>Regression line</li>
+            <li>Extrapolation line</li>
+            <li>Predict the upcoming data</li><br>
+        <img src="/static/line.png" alt="line" class="responsive"><br><br>
+</div>
+    <div id="myList4" style= "color:white;visibility:hidden;">
+        <h3 style="padding-top:20px;">Controlling appliances from the Data (BETA)</h3><hr><br>
+        <p>What you can actually do from this website is develop it like an AI Platform where you can automatically/manually control your appliances from either your: </p>
+        <li>PC</li>
+        <li>Tablet</li>
+        <li>Smartphone</li>
+        <p>from anywhere around the world!</p>
+        <img src="/static/IOT.jpg" alt="IoT" class="responsive"><br><br>
+
+</div>
+
+    <script src=
+"https://code.jquery.com/jquery-3.2.1.slim.min.js">
+  </script>
+    <script src=
+"https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js">
+  </script>
+</body>
+</html>

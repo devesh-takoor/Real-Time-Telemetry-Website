@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Real-Time Telemetry</title>
     <link rel="stylesheet" type="text/css" href="text.css">
     <link rel="icon" href="/static/RTT.ico">
@@ -23,7 +23,13 @@
         
 
     }
+.responsive {
+  width: 40%;
+  height: auto;
 
+
+
+}
     
 </style>
 
@@ -33,5 +39,23 @@
     {% include 'navbar.html' %}
     {% block content %}
     {% endblock %}
+<br><br><br>
+    <div>
+        <center>
+
+            <h1 style="background-color:rgba(0, 0, 0, 0.75); color: white; padding: 20px;">Real Time Telemetry Website</h1>
+            <img src="/static/RTT.png" alt="rttweb" class="responsive">
+            <div style="background-color:rgba(0, 0, 0, 0.75); color:white;">
+                <p>This website is an API(Application Programming Interface) which allows us to communicate with other applications:
+                    to access data and interact with external software component, operating systems, or microservices.</p>
+                <p> The website is not as simple as it looks you can see more information on how it actually works on <a href="#">this page</a>.</p>
+                <p>This webpage is mainly to connect my passion for robotics to web development. This API can later be used for many other tasks such as:
+                <li>Stock Exchange</li>
+                <li>Managing profits/loss</li>
+                <li>Statistics</li>
+            </p>
+            </div>
+        </center>
+    </div>
 </body>
 </html>
