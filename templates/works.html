@@ -61,8 +61,11 @@ height: 200px;
 border-radius: 50%;
 background-color:blue;
 color: yellow;
+font-size: 20px;
 
 }
+
+
 
 .container{
 background-color: rgba(0,0,0,1);
@@ -88,7 +91,7 @@ color:white;
             <button onclick="printnumber4()" class="btns" style="background-color:purple;">ANALYSE</button>
             <button onclick="printnumber5()" class="btns" style="background-color:purple;">CONTROL</button>
 
-        <br><br>
+        <br><br><br>
     <div class="container">
     <!--<div id="result"></div>-->
         <p id="demo"></p>
@@ -98,7 +101,7 @@ color:white;
 
     <div id="myList0" style= "color:white; visibility:hidden; display:none;">
         <h3 style="padding-top:20px;">How we actually collect data?</h3><hr><br>
-        <p>First of all we connect our Arduino Board(Uno Wifi Rev2) and then we upload our <a target="_blank" href="https://github.com/devesh-takoor/Real-Time-Telemetry-Website/tree/main/sensor_wifi_mqtt">code</a>.</p>
+        <p>First of all we connect our Arduino Board(Uno Wifi Rev2 - You can find yours <a target="_blank" href="https://www.google.com/local/place/products/catalog?ludocid=17129035467866733327&hl=en&gl=mu&fbclid=IwAR3767wiCPJLYVpOl6Ha3cyUCH7JcXZ6vjBFrbbICCRQPz8W1CY6nLDeH9w#f608bb79-6769-4fa4-a521-85030f2bc4c8">here</a>.) and then we upload our <a target="_blank" href="https://github.com/devesh-takoor/Real-Time-Telemetry-Website/tree/main/sensor_wifi_mqtt">code</a>.</p>
         <p>You must change your topics from the arduino code to avoid overriding your data and also my data.</p>
         <p>The data will then be sent to a MQTT-Broker</p>
         <img src="/static/topic.png" alt="topic" class="responsive"><br><br>
