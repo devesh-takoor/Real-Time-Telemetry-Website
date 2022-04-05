@@ -16,6 +16,7 @@ async function get_sensordata1(){
     UV_arr = [];
     //SND_arr = [];
     //TEMP_arr = [];
+	console.log(data);
     for (let item of data){
         let sensor_data = JSON.parse(item.data);
         UV_arr.push(sensor_data.UV);
@@ -36,7 +37,7 @@ async function get_sensordata1(){
     /*console.log(UV_arr);
     console.log(SND_arr);
     console.log(TEMP_arr);*/
-    var xValues = [50,60,70,80,90,100,110,120,130,140,150];
+    var xValues = [950,1000,1010,1020,1030,1040,1050,1100,1110,1120,1130];
     var yValues = UV_arr.slice((UV_arr.length - 11), UV_arr.length);
 const ctx = document.getElementById('myChart1').getContext('2d');
 const myChart =new Chart(ctx, {
@@ -97,7 +98,7 @@ async function get_sensordata2(){
     /*console.log(UV_arr);
     console.log(SND_arr);
     console.log(TEMP_arr);*/
-    var xValues = [50,60,70,80,90,100,110,120,130,140,150];
+    var xValues = [950,1000,1010,1020,1030,1040,1050,1100,1110,1120,1130];
     var yValues = SND_arr.slice((SND_arr.length - 11), SND_arr.length);
 const ctx = document.getElementById('myChart2').getContext('2d');
 const myChart =new Chart(ctx, {
@@ -159,7 +160,7 @@ async function get_sensordata3(){
     /*console.log(UV_arr);
     console.log(SND_arr);
     console.log(TEMP_arr);*/
-    var xValues = [50,60,70,80,90,100,110,120,130,140,150];
+    var xValues = [950,1000,1010,1020,1030,1040,1050,1100,1110,1120,1130];
     var yValues = TEMP_arr.slice((TEMP_arr.length - 11), TEMP_arr.length);
 const ctx = document.getElementById('myChart3').getContext('2d');
 const myChart =new Chart(ctx, {
@@ -178,7 +179,7 @@ const myChart =new Chart(ctx, {
       options: {
         legend: {display: false},
         scales: {
-          yAxes: [{ticks: {min: 0, max:100}}],
+          yAxes: [{ticks: {min: 10, max:50}}],
         }
       }
     });
