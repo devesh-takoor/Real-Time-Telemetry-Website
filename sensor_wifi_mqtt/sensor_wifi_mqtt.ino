@@ -40,7 +40,7 @@ const char broker[] = "test.mosquitto.org";
 int        port     = 1883;
 const char topic[]  = "arduino/rttweb";
 
-const long interval = 600000;
+const long interval = 5000;
 unsigned long previousMillis = 0;
 
 int count = 0;
@@ -140,7 +140,7 @@ void loop() {
   float voltage = sensorValue; 
   // print out the value you read:
   mqttClient.print("'Temperature': '");
-  mqttClient.print(voltage/2);
+  mqttClient.print(voltage/2.33);
   mqttClient.print("'");
 
   
